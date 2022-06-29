@@ -19,9 +19,9 @@ function greetMessage(str) {
 greetMessage("John");
 
 function greetUsers(arr, callback) {
-  for (let i = 0; i < arr.length; i++) {
-    callback(arr[i]);
-  }
+  arr.forEach((user) => {
+    callback(user);
+  });
 }
 greetUsers(["John", "Peter", "Mark"], greetMessage);
 
@@ -38,13 +38,17 @@ console.log(`*****************`);
     const array = [1, 2, 3, 4, 5, 6]
     sqaure(array,squareNumber)  // return [1,4,9,16,25]
 ``` */
-function squareNumber(num) {
-  console.log(num * num);
-}
 const array = [1, 2, 3, 4, 5, 6];
-function square(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    squareNumber(arr[i]);
-  }
+function squareNumber(num) {
+  return num * num;
 }
-square(array, squareNumber);
+
+function square(arr, callback) {
+  // for (let i = 0; i < arr.length; i++) {
+  //   squareNumber(arr[i]);
+  // }
+  let a = arr.map((num) => callback(num));
+  return a;
+}
+let result = square(array, squareNumber);
+console.log(result);
